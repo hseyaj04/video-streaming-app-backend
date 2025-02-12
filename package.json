@@ -2,6 +2,7 @@
   "name": "video-streaming-app-backend",
   "version": "1.0.0",
   "description": "Backend Project",
+  "type" : "module",
   "keywords": [
     "JS",
     "Backend"
@@ -16,13 +17,12 @@
   },
   "license": "ISC",
   "author": "Jayesh",
-  "type": "commonjs",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "devDependencies": {
     "nodemon": "^3.1.9",
     "prettier": "^3.5.0"
+  },
+  "scripts": {
+    "dev": "nodemon index.js"
   }
 }

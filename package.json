@@ -2,7 +2,7 @@
   "name": "video-streaming-app-backend",
   "version": "1.0.0",
   "description": "Backend Project",
-  "type" : "module",
+  "type": "module",
   "keywords": [
     "JS",
     "Backend"
@@ -23,6 +23,11 @@
     "prettier": "^3.5.0"
   },
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.10.0"
   }
 }

@@ -8,10 +8,11 @@ const uploadCloudinaary = async (file) => {
         if(!file){
             return null;
         }
-        cloudinary.uploader.upload(file, {
+        const response = await cloudinary.uploader.upload(file, {
             resource_type: "auto",
         })
-        console.log("File uploaded successfully on cloudinary", response.url);
+        // console.log("File uploaded successfully on cloudinary", response.url);
+        fs.unlinkSync(file);
         return response;
     }
     catch(err){
@@ -23,7 +24,7 @@ const uploadCloudinaary = async (file) => {
 cloudinary.config({ 
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
     api_key: process.env.CLOUDINARY_API_KEY, 
-    api_secret: process.env.CLOUDINARY_API_SECRETS // Click 'View API Keys' above to copy your API secret
+    api_secret: process.env.CLOUDINARY_API_SECRET // Click 'View API Keys' above to copy your API secret
 });
 
 export {uploadCloudinaary};

@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+
+
+
 const userSchema = new mongoose.Schema({
     userName: {
         type: String,
@@ -25,16 +28,15 @@ const userSchema = new mongoose.Schema({
     },
     avatar: {
         type: String,
-        default: "https://www.gravatar.com/avatar/000?d=mp",
         required: true    
     },
     coverImage: {
         type: String,
-        default: "https://www.gravatar.com/avatar/000?d=mp"
+        
     },
     watchHistory:[
         {
-        type: Schema.types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Video"
         }
     ],

@@ -3,8 +3,12 @@ import { ApiError } from '../utils/ApiError.js';
 import { User } from '../models/user.model.js';
 import {uploadCloudinaary} from '../utils/cloudinary.js';
 import {ApiResponse} from '../utils/ApiResponse.js';
+import { verifyJWT } from '../middlewares/auth.middleware.js';
 
-const generateAccessTokenAndRefreshToken = (user) => {
+
+
+
+const generateAccessTokenAndRefreshToken = async (user) => {
     try{
         const user = await User.findById(userId);
         const accessToken = user.generateAccessToken();
@@ -120,7 +124,7 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 
     const user = await User.findOne({
-        $or: [{ email }, { userName }],
+        $or: [{ email }, { userName }]
     });
 
     if(!user){
@@ -157,7 +161,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
 
 const logoutUser = asyncHandler(async (req, res) => {
-    User.findByIdAndUpdate(
+    await User.findByIdAndUpdate(
         req.user._id,
         {
             $set: {

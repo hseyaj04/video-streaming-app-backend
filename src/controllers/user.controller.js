@@ -18,6 +18,7 @@ const generateAccessTokenAndRefreshToken = async (userId) => {
 
         user.refreshToken = refreshToken;
         await user.save({validateBeforeSave: false}); // so that other entities such as password are not checked again
+        
         return {accessToken, refreshToken};
     }
     catch(err){
@@ -148,7 +149,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
     return res.status(200)
     .cookie("accessToken", accessToken)
-    .cookie("responseToken", refreshToken)
+    .cookie("refreshToken", refreshToken)
     .json(
         new ApiResponse(200, 
             {
@@ -164,8 +165,8 @@ const logoutUser = asyncHandler(async (req, res) => {
     await User.findByIdAndUpdate(
         req.user._id,
         {
-            $set: {
-                refreshToken: undefined
+            $unset: {
+                refreshToken: 1
             }
         },
         {
@@ -201,8 +202,10 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
             incomingRefreshToken,
             process.env.REFRESH_TOKEN_SECRET
         )
+        // console.log(decodedToken);
+        
     
-        const user = await User.findById(decodedToken?.id);
+        const user = await User.findById(decodedToken?._id);
         if(!user){
             throw new ApiError(401, "Invalid Refresh Token");
         }
@@ -384,7 +387,7 @@ const getUserChannelProfile = asyncHandler(async(req, res) => {
                 },
                 isSubscribed: {
                     $cond: {
-                        if: {$in: [req.user?._id, "subscribers.subscriber"]},
+                        if: {$in: [req.user?._id, "$subscribers.subscriber"]},
                         then: true,
                         else: false
                     }
@@ -418,7 +421,7 @@ const getUserChannelProfile = asyncHandler(async(req, res) => {
 
 
 const getWatchHistory = asyncHandler(async(req, res) => {
-    const user = await user.aggregate([
+    const user = await User.aggregate([
         {
             $match: {
                 _id: new mongoose.Types.ObjectId(req.user?._id)

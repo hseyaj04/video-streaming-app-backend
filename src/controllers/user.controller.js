@@ -3,9 +3,9 @@ import { ApiError } from '../utils/ApiError.js';
 import { User } from '../models/user.model.js';
 import {uploadCloudinaary} from '../utils/cloudinary.js';
 import {ApiResponse} from '../utils/ApiResponse.js';
-import { verifyJWT } from '../middlewares/auth.middleware.js';
+// import { verifyJWT } from '../middlewares/auth.middleware.js';
 import jwt from 'jsonwebtoken';
-import { response } from 'express';
+// import { response } from 'express';
 import mongoose from 'mongoose';
 
 

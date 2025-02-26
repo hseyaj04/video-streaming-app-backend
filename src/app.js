@@ -18,12 +18,12 @@ app.use(cookieParser()); // Parse cookie headers
 
 //Routes
 import userRouter from "./routes/user.routes.js";
-
+import healthCheckRouter from "./routes/healthCheck.routes.js";
 
 //routes declaration
 
 app.use("/api/v1/users", userRouter);
-
+app.use("/api/v1", healthCheckRouter);
 
 
 

@@ -95,6 +95,7 @@ const deleteTweet = asyncHandler(async(req, res) => {
         throw new ApiError(400, "user not authorized to delete tweet");
     }
 
+
     await Tweet.deleteOne({
         _id: tweetId,
         owner: req.user?._id

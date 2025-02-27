@@ -77,7 +77,7 @@ const updateTweet = asyncHandler(async(req, res) => {
     .json(
         new ApiResponse(
             200,
-            w{tweet},
+            {tweet},
             "Tweet updated successfully"
         )
     )

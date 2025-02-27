@@ -1,9 +1,7 @@
 import { v2 as cloudinary } from "cloudinary";
-import { log } from "console";
-import { response } from "express";
 import fs from "fs";
 
-const uploadCloudinaary = async (file) => {
+const uploadCloudinary = async (file) => {
     try{
         if(!file){
             return null;
@@ -27,4 +25,4 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET // Click 'View API Keys' above to copy your API secret
 });
 
-export {uploadCloudinaary};
+export {uploadCloudinary};

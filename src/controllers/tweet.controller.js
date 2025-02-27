@@ -9,13 +9,15 @@ const createTweet = asyncHandler(async(req, res) => {
 
     const {content} = req.body;
     if(!content){
-        throw new ApiError(400, "Content is Reuired")
+        throw new ApiError(400, "Content is Required")
     }
-
-    const userId = new mongoose.Types.ObjectId(req.user?._id);
+    if (!req.user?._id) {
+        throw new ApiError(401, "Unauthorized: User not authenticated");
+      }
+      
     const tweet = await Tweet.create({
         content,
-        owner: userId
+        owner: req.user?._id
     })
 
     return res

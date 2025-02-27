@@ -49,57 +49,24 @@ const getAllTweets = asyncHandler(async(req, res) => {
 
 
 const updateTweet = asyncHandler(async(req, res) => {
-    const {tId} = req.params;
-    const {newContent} = req.body;
-
-    if(!tId){
-        throw new ApiError(400, "tweet not found");
-    }
-    if(!newContent){
-        throw new ApiError(400, "new content is required not found");
     }
 
-    const tweet = await Tweet.findById(tId);
-    if(!tweet){
-        throw new ApiError(400, "tweet not found");
     }
-
-
-    if(tweet.owner.toString() !== req.user?._id.toString()){
-        throw new ApiError(400, "user not authorized to update tweet");
-    }
-    tweet.content = newContent;
-    await tweet.save();
 
 
     return res.status(200)
     .json(
         new ApiResponse(
             200,
-            tweet,
             "Tweet updated successfully"
         )
     )
 })
 
-
-
 const deleteTweet = asyncHandler(async(req, res) => {
-    const {tweetId} = req.params;
-    const tweet = await Tweet.findById(tweetId);
-    if(!tweet){
-        throw new ApiError(400, "tweet not found");
     }
 
-    if(tweet.owner.toString() !== req.user?._id.toString()){
-        throw new ApiError(400, "user not authorized to delete tweet");
     }
-
-
-    await Tweet.deleteOne({
-        _id: tweetId,
-        owner: req.user?._id
-    });
 
 
     return res.status(200)

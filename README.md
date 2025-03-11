@@ -146,7 +146,7 @@ This project is licensed under the [MIT License](LICENSE). -->
 
 ## 📬 Contact
 
-For support or inquiries, please contact (codex.hseyaj26@gmail.com) or visit our [GitHub](https://github.com/hseyaj04) page.
+For support or inquiries, please contact [email](codex.hseyaj26@gmail.com) or visit our [GitHub](https://github.com/hseyaj04) page.
 
 ---
 

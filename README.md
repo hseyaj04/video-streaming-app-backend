@@ -88,18 +88,18 @@ CLOUDINARY_API_SECRET=[TODO: YOUR_CLOUDINARY_API_SECRET]
 - **Get Video by ID:** `GET /api/v1/videos/:videoId`
 - **Update Video:** `PATCH /api/v1/videos/:videoId`
 - **Delete Video:** `DELETE /api/v1/videos/:videoId`
-
+<!--
 ## 🧪 Testing
 
 To run tests, use the following command:
 ```sh
 npm test
 ```
-
+-->
 ## ⚙️ Configuration
 
 Important service configurations can be found in the `.env` file. Ensure all required environment variables are set correctly.
-
+<!--
 ## 📦 Deployment
 
 ### Docker
@@ -130,7 +130,7 @@ Important service configurations can be found in the `.env` file. Ensure all req
     ```sh
     git push heroku main
     ```
-
+-->
 <!-- ### AWS
 
 Refer to the [AWS Deployment Guide](TODO: LINK_TO_AWS_DEPLOYMENT_GUIDE) for detailed instructions. -->
